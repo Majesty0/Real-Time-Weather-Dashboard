@@ -114,3 +114,8 @@ No license has been added yet. Add one if you plan to share or reuse the project
 - [Quick Start Guide](notebooks/quick-start.ipynb)
 - [Data Fetch Demo (OpenWeatherMap)](notebooks/data-fetch-demo.ipynb)
 - [Visualization Examples (Plotly)](notebooks/visualization-examples.ipynb)
+
+  > <img width="1610" height="649" alt="image" src="https://github.com/user-attachments/assets/852250f0-2c3f-4e12-a55b-cbdbab3db66b" />
+  > <img width="612" height="848" alt="image" src="https://github.com/user-attachments/assets/5804c987-bee3-430b-a8c0-f4def5893726" />
+
+
