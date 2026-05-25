@@ -59,7 +59,7 @@ function drawLineChart(canvas, labels, values, color) {
   ctx.beginPath();
 
   values.forEach((value, i) => {
-    const x = padding + (i / (values.length - 1 || 1)) * (width - padding * 2);
+    const x = padding + (i / Math.max(values.length - 1, 1)) * (width - padding * 2);
     const y = height - padding - ((value - min) / range) * (height - padding * 2);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -74,8 +74,11 @@ function drawLineChart(canvas, labels, values, color) {
 
 function computeMetrics(forecastList) {
   const temps = forecastList.map((entry) => entry.main.temp);
+  if (!temps.length) {
+    return { average: 0, highest: 0, increase: 0 };
+  }
 
-  const average = temps.reduce((sum, temp) => sum + temp, 0) / (temps.length || 1);
+  const average = temps.reduce((sum, temp) => sum + temp, 0) / temps.length;
   const highest = Math.max(...temps);
   const increase = temps[temps.length - 1] - temps[0];
 
