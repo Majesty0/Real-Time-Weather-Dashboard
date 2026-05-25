@@ -1,5 +1,10 @@
 # Real-Time Weather Dashboard
 
+[![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
+[![Jupyter Notebook](https://img.shields.io/badge/notebook-Jupyter-orange?logo=jupyter)](https://jupyter.org/)
+[![Plotly](https://img.shields.io/badge/visualization-Plotly-2ecc71?logo=plotly)](https://plotly.com/)
+[![Requirements](https://img.shields.io/badge/requirements-requirements.txt-lightgrey)](requirements.txt)
+
 An interactive weather analytics dashboard built in Jupyter Notebook with live data from the OpenWeatherMap API.
 
 It visualizes temperature, humidity, and atmospheric pressure in three clear charts, shows a city location map, includes hover tooltips for exact values, and adds a short insight panel to summarize the live weather conditions.
@@ -86,6 +91,26 @@ The dashboard will then render the live weather charts, the city map, the summar
 - The dashboard therefore summarizes the returned forecast period and uses the start-to-end temperature change as the temperature movement card.
 - If your API key is rejected, verify that it is active in your OpenWeatherMap account.
 
+> **Note:** Power BI Dashboard Link: To be updated when license is renewed.
+
+<div style="border-left:4px solid #2563eb; padding:12px; background:#eff6ff; border-radius:6px; margin-top:12px;">
+	<strong>Note:</strong> This project demonstrates live weather visualization using the OpenWeatherMap API and Jupyter notebooks. You can run it locally or on a binder-like service if you provide a working API key.
+</div>
+
+<div style="border-left:4px solid #059669; padding:12px; background:#ecfdf5; border-radius:6px; margin-top:12px;">
+	<strong>Important:</strong> Do not commit your OpenWeatherMap API key to the repository. Use the `OPENWEATHERMAP_API_KEY` environment variable or enter it into the notebook's secure input field.
+</div>
+
+<div style="border-left:4px solid #d97706; padding:12px; background:#fff7ed; border-radius:6px; margin-top:12px;">
+	<strong>Warning:</strong> The OpenWeatherMap free tier has rate limits. Avoid rapid automated polling to prevent temporary blocking of your API key.
+</div>
+
 ## License
 
 No license has been added yet. Add one if you plan to share or reuse the project publicly.
+
+## Example Notebooks
+
+- [Quick Start Guide](notebooks/quick-start.ipynb)
+- [Data Fetch Demo (OpenWeatherMap)](notebooks/data-fetch-demo.ipynb)
+- [Visualization Examples (Plotly)](notebooks/visualization-examples.ipynb)
