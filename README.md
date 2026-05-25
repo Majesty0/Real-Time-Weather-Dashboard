@@ -70,6 +70,53 @@ Launch Jupyter and open:
 
 `API Weather DAta Modeling.ipynb`
 
+## Interactive Rendering
+
+The dashboard uses Plotly for interactive charts. To ensure charts render interactively inside your notebook, you can:
+
+- Set the Plotly renderer at runtime in Python (the notebook already sets a sensible default):
+
+```python
+import plotly.io as pio
+pio.renderers.default = 'notebook_connected'  # or 'jupyterlab' when using JupyterLab
+```
+
+- Override the default by exporting the `PLOTLY_RENDERER` environment variable before launching Jupyter:
+
+```powershell
+$env:PLOTLY_RENDERER = 'notebook_connected'
+jupyter notebook
+```
+
+- If inline rendering fails, the notebook will fall back to embedding an interactive HTML version of the chart. You can also manually embed a figure as HTML:
+
+```python
+from IPython.display import HTML
+HTML(fig.to_html(include_plotlyjs='cdn'))
+```
+
+## Running as a Dashboard (Voila)
+
+You can serve the notebook as a standalone interactive dashboard using `voila` (no notebook UI shown). Install `voila` and run:
+
+```bash
+pip install -r requirements.txt
+voila "API Weather DAta Modeling.ipynb"
+```
+
+For JupyterLab users, `jupyterlab` is already in `requirements.txt` — open the notebook in JupyterLab for an improved interactive experience.
+
+## Troubleshooting
+
+- If Plotly charts do not appear, ensure `plotly` and `ipywidgets` are installed and enabled for your Jupyter environment.
+- If map tiles appear blank, try setting a Mapbox token:
+
+```python
+import os
+os.environ['MAPBOX_TOKEN'] = 'your_mapbox_token'
+```
+
+
 ## How to Use
 
 1. Enter a city name.
