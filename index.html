@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Weather Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="dashboard">
+      <h1>Real-Time Weather Dashboard</h1>
+      <p class="subtitle">
+        Visualize live OpenWeather data for any city with map, trends, and key metrics.
+      </p>
+
+      <section class="controls">
+        <label>
+          OpenWeather API Key
+          <input id="apiKey" type="password" placeholder="Paste your API key" />
+        </label>
+        <label>
+          City
+          <input id="city" type="text" placeholder="e.g. London" />
+        </label>
+        <button id="searchBtn" type="button">Load Weather</button>
+      </section>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+
+      <section class="cards" id="currentCards">
+        <article class="card">
+          <h2>Temperature</h2>
+          <p id="temperatureValue">-- °C</p>
+        </article>
+        <article class="card">
+          <h2>Atmospheric Pressure</h2>
+          <p id="pressureValue">-- hPa</p>
+        </article>
+        <article class="card">
+          <h2>Humidity</h2>
+          <p id="humidityValue">-- %</p>
+        </article>
+      </section>
+
+      <section class="cards metrics">
+        <article class="card">
+          <h2>Average Temp (Forecast)</h2>
+          <p id="avgTemp">-- °C</p>
+        </article>
+        <article class="card">
+          <h2>Highest Temp (Forecast)</h2>
+          <p id="maxTemp">-- °C</p>
+        </article>
+        <article class="card">
+          <h2>Temp Increase (Forecast)</h2>
+          <p id="tempIncrease">-- °C</p>
+        </article>
+      </section>
+
+      <section class="visuals">
+        <div class="panel">
+          <h2>Temperature Trend</h2>
+          <canvas id="tempChart" width="800" height="220"></canvas>
+        </div>
+        <div class="panel">
+          <h2>Pressure Trend</h2>
+          <canvas id="pressureChart" width="800" height="220"></canvas>
+        </div>
+        <div class="panel">
+          <h2>Humidity Trend</h2>
+          <canvas id="humidityChart" width="800" height="220"></canvas>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>City Map</h2>
+        <div id="map" aria-label="City map"></div>
+      </section>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
