@@ -4,6 +4,9 @@
 [![Jupyter Notebook](https://img.shields.io/badge/notebook-Jupyter-orange?logo=jupyter)](https://jupyter.org/)
 [![Plotly](https://img.shields.io/badge/visualization-Plotly-2ecc71?logo=plotly)](https://plotly.com/)
 [![Requirements](https://img.shields.io/badge/requirements-requirements.txt-lightgrey)](requirements.txt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Majesty0/Real-Time-Weather-Dashboard/HEAD)
+[![Voila](https://img.shields.io/badge/launch-voila-blueviolet.svg)](https://mybinder.org/v2/gh/Majesty0/Real-Time-Weather-Dashboard/HEAD?urlpath=voila%2Frender%2FAPI%20Weather%20DAta%20Modeling.ipynb)
 
 An interactive weather analytics dashboard built in Jupyter Notebook with live data from the OpenWeatherMap API.
 
