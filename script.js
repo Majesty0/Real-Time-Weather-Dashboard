@@ -25,7 +25,7 @@ if (window.L) {
   }).addTo(map);
   marker = L.marker([20, 0]).addTo(map);
 } else {
-  setStatus("Map tiles could not be loaded in this environment.", true);
+  setStatus("Map library could not be loaded in this environment.", true);
 }
 
 function setStatus(message, isError = false) {
@@ -57,9 +57,10 @@ function drawLineChart(canvas, labels, values, color) {
   ctx.strokeStyle = color;
   ctx.lineWidth = 2;
   ctx.beginPath();
+  const divisor = Math.max(values.length - 1, 1);
 
   values.forEach((value, i) => {
-    const x = padding + (i / Math.max(values.length - 1, 1)) * (width - padding * 2);
+    const x = padding + (i / divisor) * (width - padding * 2);
     const y = height - padding - ((value - min) / range) * (height - padding * 2);
     if (i === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -75,14 +76,14 @@ function drawLineChart(canvas, labels, values, color) {
 function computeMetrics(forecastList) {
   const temps = forecastList.map((entry) => entry.main.temp);
   if (!temps.length) {
-    return { average: 0, highest: 0, increase: 0 };
+    return { average: 0, highest: 0, delta: 0 };
   }
 
   const average = temps.reduce((sum, temp) => sum + temp, 0) / temps.length;
   const highest = Math.max(...temps);
-  const increase = temps[temps.length - 1] - temps[0];
+  const delta = temps[temps.length - 1] - temps[0];
 
-  return { average, highest, increase };
+  return { average, highest, delta };
 }
 
 async function fetchJson(url) {
@@ -139,7 +140,7 @@ async function loadWeather() {
     const metrics = computeMetrics(forecastList);
     elements.avgTemp.textContent = `${metrics.average.toFixed(1)} °C`;
     elements.maxTemp.textContent = `${metrics.highest.toFixed(1)} °C`;
-    elements.tempIncrease.textContent = `${metrics.increase >= 0 ? "+" : ""}${metrics.increase.toFixed(1)} °C`;
+    elements.tempIncrease.textContent = `${metrics.delta >= 0 ? "+" : ""}${metrics.delta.toFixed(1)} °C`;
 
     const labels = forecastList.map((item) =>
       new Date(item.dt * 1000).toLocaleDateString(undefined, { month: "short", day: "numeric" })
