@@ -87,7 +87,15 @@ function computeMetrics(forecastList) {
 
 async function fetchJson(url) {
   const response = await fetch(url);
-  const data = await response.json();
+  const raw = await response.text();
+  let data = null;
+  if (raw) {
+    try {
+      data = JSON.parse(raw);
+    } catch {
+      data = null;
+    }
+  }
 
   if (!response.ok) {
     throw new Error(data?.message || "Unable to fetch weather data.");
@@ -127,31 +135,32 @@ async function loadWeather() {
     elements.pressureValue.textContent = `${weather.main.pressure} hPa`;
     elements.humidityValue.textContent = `${weather.main.humidity} %`;
 
-    const metrics = computeMetrics(forecast.list);
+    const forecastList = Array.isArray(forecast.list) ? forecast.list : [];
+    const metrics = computeMetrics(forecastList);
     elements.avgTemp.textContent = `${metrics.average.toFixed(1)} °C`;
     elements.maxTemp.textContent = `${metrics.highest.toFixed(1)} °C`;
     elements.tempIncrease.textContent = `${metrics.increase >= 0 ? "+" : ""}${metrics.increase.toFixed(1)} °C`;
 
-    const labels = forecast.list.map((item) =>
+    const labels = forecastList.map((item) =>
       new Date(item.dt * 1000).toLocaleDateString(undefined, { month: "short", day: "numeric" })
     );
 
     drawLineChart(
       elements.tempChart,
       labels,
-      forecast.list.map((item) => item.main.temp),
+      forecastList.map((item) => item.main.temp),
       "#f97316"
     );
     drawLineChart(
       elements.pressureChart,
       labels,
-      forecast.list.map((item) => item.main.pressure),
+      forecastList.map((item) => item.main.pressure),
       "#60a5fa"
     );
     drawLineChart(
       elements.humidityChart,
       labels,
-      forecast.list.map((item) => item.main.humidity),
+      forecastList.map((item) => item.main.humidity),
       "#34d399"
     );
 
